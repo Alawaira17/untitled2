@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
+import 'ApiService.dart';
 import 'UserController.dart';
 import 'UserModel.dart';
 
@@ -13,8 +14,8 @@ class UserListView extends StatefulWidget {
 }
 
 class _UserListViewState extends State<UserListView> {
-  List users = [];
   final UserController _controller = UserController();
+  List<UserModel> _users = []; // Store fetched users here
 
   @override
   void initState() {
@@ -24,8 +25,10 @@ class _UserListViewState extends State<UserListView> {
 
   Future<void> fetchData() async {
     try {
-      users = await _controller.fetchUsers();
-      setState(() {});
+      // Fetch users from the controller
+      _users = await _controller.fetchUsers();
+      setState(() {
+      });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to load users: $e')),
@@ -45,19 +48,20 @@ class _UserListViewState extends State<UserListView> {
           ),
         ),
       ),
-      body: users.isEmpty
+      body: _users.isEmpty
           ? Text("لا يوجد بيانات")
           : ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (BuildContext context, int index) {
-            UserModel myItem = UserModel.fromJson(users[index]);
-            return Row(
-              children: [
-                Text(" Id : " + myItem.userId.toString()),
-                Text(" - Name : " + myItem.userFullName.toString()),
-              ],
-            );
-          }),
+        itemCount: _users.length,
+        itemBuilder: (BuildContext context, int index) {
+          UserModel myItem = _users[index]; // Get user at the current index
+          return Row(
+            children: [
+              Text(" Id : " + myItem.userId.toString()),
+              Text(" - Name : " + myItem.userFullName.toString()),
+            ],
+          );
+        },
+      ),
     );
   }
 }
