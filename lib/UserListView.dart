@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, unused_import
 
 import 'package:flutter/material.dart';
-import 'ApiService.dart';
+import 'Services/ApiService.dart';
 import 'UserController.dart';
-import 'UserModel.dart';
+import 'Model/UserModel.dart';
 
 
 class UserListView extends StatefulWidget {

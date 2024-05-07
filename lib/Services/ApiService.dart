@@ -1,9 +1,9 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, unnecessary_null_comparison
 
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'UserModel.dart';
+import '../Model/UserModel.dart';
 
 
 /*class ApiService {

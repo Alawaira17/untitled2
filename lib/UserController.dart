@@ -1,6 +1,6 @@
 
-import 'ApiService.dart';
-import 'UserModel.dart';
+import 'Services/ApiService.dart';
+import 'Model/UserModel.dart';
 
 
 class UserController {
